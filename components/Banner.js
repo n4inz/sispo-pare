@@ -8,27 +8,55 @@ import '@splidejs/splide/dist/css/splide.min.css';
 function Banner() {
   
     return (
-        <>
+      <div className="flex p-5">
+          <div className="max-w-2xl">
             <Splide
-              options={ {
-                rewind: true,
-                gap   : '1rem',
-                width : '30%',
-                heightRatio : 0.3,
-                autoplay: true
-              } }
-            >
-              <SplideSlide>
-                <img src="dummy/upacara.jpg" alt="Image 1"/>
-              </SplideSlide>
-              <SplideSlide>
-                <img src="dummy/lomba.jpg" alt="Image 2"/>
-              </SplideSlide>
-              <SplideSlide>
-                <img src="dummy/pawai.jpg" alt="Image 3"/>
-              </SplideSlide>
-          </Splide>
-        </>
+                options={ {
+                  rewind: true,
+                  
+                  width : '100%',
+
+                  autoplay: true
+                } }
+              >
+                <SplideSlide>
+                  <Image 
+                      src={Upacara}
+                      objectFit="contain"
+                  />
+                </SplideSlide>
+                <SplideSlide>
+                  <Image 
+                        src={Lomba}
+                        objectFit="contain"
+                    />
+                </SplideSlide>
+                <SplideSlide>
+                  <Image 
+                        src={Pawai}
+                        objectFit="contain"
+                    />
+                </SplideSlide>
+            </Splide>
+          </div>
+          <div className="flex ">
+              <div className="mx-3">
+                  <Image 
+                      src={Lomba}
+                      
+                      objectFit="contain"
+                  />
+              </div>
+              <div className="">
+                  <Image 
+                      src={Pawai}
+                      
+                      objectFit="contain"
+                  />
+              </div>
+          </div>
+      </div>
+
     )
 }
 
