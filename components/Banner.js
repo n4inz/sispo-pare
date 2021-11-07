@@ -30,6 +30,7 @@ function Banner() {
                         src={Lomba}
                         objectFit="contain"
                     />
+                   
                 </SplideSlide>
                 <SplideSlide>
                   <Image 
@@ -40,19 +41,30 @@ function Banner() {
             </Splide>
           </div>
           <div className="flex ">
-              <div className="mx-3">
-                  <Image 
+              <div className="mx-3 relative bg-yellow-500 h-[43%]">
+                  <Image
+                      className="brightness-75"
                       src={Lomba}
-                      
                       objectFit="contain"
                   />
+
+                  <div className="absolute top-20 p-5">
+                    <div className="text-sm bg-red-500 rounded-sm text-center text-white">Pertandingan</div>
+                    <div className="text-white font-bold">Lomba 17 Agustus</div>
+                    <div className="text-white text-xs">13-09-2020 / Pemerintah Kota</div>
+                  </div>
               </div>
-              <div className="">
+              <div className="relative">
                   <Image 
                       src={Pawai}
-                      
+                      className="brightness-75"
                       objectFit="contain"
                   />
+                  <div className="absolute top-20 p-5">
+                    <div className="text-sm bg-red-500 rounded-sm text-center text-white">Pawai</div>
+                    <div className="text-white font-bold">Pawai Budaya</div>
+                    <div className="text-white text-xs">13-09-2020 / Pemerintah Kota</div>
+                  </div>
               </div>
           </div>
       </div>
