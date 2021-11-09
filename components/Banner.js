@@ -23,12 +23,14 @@ function Banner() {
                   <Image 
                       src={Upacara}
                       objectFit="contain"
+                      className="hover:scale-110 transition transform duration-500 ease-out"
                   />
                 </SplideSlide>
                 <SplideSlide>
                   <Image 
                         src={Lomba}
                         objectFit="contain"
+                        className="hover:scale-110 transition transform duration-500 ease-out"
                     />
                    
                 </SplideSlide>
@@ -36,6 +38,7 @@ function Banner() {
                   <Image 
                         src={Pawai}
                         objectFit="contain"
+                        className="hover:scale-110 transition transform duration-500 ease-out"
                     />
                 </SplideSlide>
             </Splide>
@@ -43,7 +46,7 @@ function Banner() {
           <div className="flex ">
               <div className="mx-3 relative bg-yellow-500 h-[43%]">
                   <Image
-                      className="brightness-75"
+                      className="brightness-75 hover:scale-110 transition transform duration-500 ease-out"
                       src={Lomba}
                       objectFit="contain"
                   />
@@ -57,7 +60,7 @@ function Banner() {
               <div className="relative">
                   <Image 
                       src={Pawai}
-                      className="brightness-75"
+                      className="brightness-75 hover:scale-110 transition transform duration-500 ease-out"
                       objectFit="contain"
                   />
                   <div className="absolute top-20 p-5">
