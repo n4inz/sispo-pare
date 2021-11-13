@@ -7,11 +7,11 @@ import {
   } from "react-icons/fa";
 function Footer() {
     return (
-        <div className="bg-black">
-            <div className="lg:flex p-20 grid justify-items-center">
+        <div className="bg-black ">
+            <div className="lg:flex p-10 lg:p-20 grid justify-items-center">
                 <div className="mx-auto">
                     <div>
-                            <p className="text-3xl text-gray-700 ">PAREPARE-KU</p>
+                        <p className="text-3xl text-gray-700 ">PAREPARE-KU</p>
                     </div>
                     <div className="mt-6">
                             <p className="text-base text-gray-500">Menjadikan Parepare sebagai Kota Industri Tanpa Cerobong Asap.</p>
@@ -23,13 +23,18 @@ function Footer() {
                         <FaGooglePlusG className="h-7 w-7 text-gray-500"/>
                         <FaPinterestSquare className="h-7 w-7 text-gray-500"/>
                     </div>
-                    <div className="mt-6 space-x-1">
-                        <input className="h-14 w-96  p-5 outline-none" type="text" placeholder="Enter your email address"/>
-                        <button className="bg-gradient-to-r from-green-400 to-blue-500 text-white p-4 h-14 w-28">SUBMIT</button>
+                    <div className="mt-6 grid lg:flex lg:space-x-1">
+               
+                            <input className=" w-full h-14 lg:w-96  p-5 outline-none mb-2" type="text" placeholder="Enter your email address"/>
+
+             
+       
+                            <button className="bg-gradient-to-r from-green-400 to-blue-500 text-white  h-14 w-28">SUBMIT</button>
+
                     </div>
                 </div>
-                <div className="flex mt-10 space-x-20 lg:space-x-4 mx-auto ">
-                    <div className="text-white">
+                <div className="lg:flex grid mt-10  lg:space-x-4 mx-auto ">
+                    <div className="text-white mb-10">
                         <div className="font-bold">
                             Popular Categories
                         </div>

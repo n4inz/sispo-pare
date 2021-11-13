@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Link from "next/link"
 import {
     BadgeCheckIcon,
     ChartBarIcon,
@@ -15,10 +15,18 @@ function Header() {
             <div className="flex space-x-6 text-white text-lgm">
                 <label>PAREPARE-KU</label>
                 <div className="hidden lg:inline space-x-6">
-                    <label>HOME</label>
-                    <label>VIDEO</label>
-                    <label>KEGIATAN</label>
-                    <label>HUBUNGI KAMI</label>
+                    <Link href="/">
+                        <label className="hover:cursor-pointer hover:underline hover:text-gray-500">HOME</label>
+                    </Link>
+                    <Link href="/videos">
+                        <label className="hover:cursor-pointer hover:underline hover:text-gray-500">VIDEO</label>
+                    </Link>
+                    <Link href="/kegiatan">
+                        <label className="hover:cursor-pointer hover:underline hover:text-gray-500">KEGIATAN</label>
+                    </Link>
+                    <Link href="/contact">
+                        <label className="hover:cursor-pointer hover:underline hover:text-gray-500">HUBUNGI KAMI</label>
+                    </Link>
                 </div>
             </div>
 
@@ -33,10 +41,20 @@ function Header() {
                 </div>
             </div>
             <div className={`lg:hidden p-5 text-sm text-gray-100  ${!dropDown && 'hidden' }`}>
-                <div className=" hover:cursor-pointer hover:underline hover:text-gray-100">HOME</div>
-                <div className=" hover:cursor-pointer hover:underline hover:text-gray-100">VIDEO</div>
-                <div className=" hover:cursor-pointer hover:underline hover:text-gray-100">KEGIATAN</div>
-                <div className=" hover:cursor-pointer hover:underline hover:text-gray-100">HUBUNGI KAMI</div>
+                <Link href="/">
+                    <div className=" hover:cursor-pointer hover:underline hover:text-gray-100">HOME</div>
+                </Link>
+                <Link href="/videos">
+                    <div className=" hover:cursor-pointer hover:underline hover:text-gray-100">VIDEO</div>
+                </Link>
+                <Link href="/kegiatan">
+                    <div className=" hover:cursor-pointer hover:underline hover:text-gray-100">KEGIATAN</div>
+                </Link>
+                
+                <Link href="/contact">
+                    <div className=" hover:cursor-pointer hover:underline hover:text-gray-100">HUBUNGI KAMI</div>
+                </Link>
+                
             </div>
 
         </div>
