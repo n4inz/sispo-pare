@@ -9,9 +9,8 @@ import {
   } from "react-icons/fa";
 
 import {RootContext} from "../../context";
-
-function dashboard() {
-   
+import Editor from "../../components/admin/Editor";
+function dashboardV2() {
     return (
         <RootContext.Consumer>
             {
@@ -32,7 +31,7 @@ function dashboard() {
                                         </div>
                                         <div className="flex p-3 mt-14">
                                             <div className=" w-1/4 text-gray-700 text-sm lg:text-2xl">
-                                                Post Artikel 1
+                                                Post Artikel 2
                                             </div>
                                             <div className="flex justify-end items-center w-3/4 text-sm space-x-1">
                                                 <span className=" text-blue-500 hover:cursor-pointer">Home</span><span className="text-gray-400">/</span><span className="text-gray-400">Artikel</span>
@@ -54,8 +53,12 @@ function dashboard() {
                                             </div>
 
                     
-
-                    
+                                            <div className="mt-6 mb-10">
+                                                <Editor/>
+                                            </div>
+                                            <div className="p-2 flex  justify-center">
+                                                <button className="bg-blue-600 w-40 text-gray-100 p-2 rounded-md mx-3 text-sm">Submit</button>
+                                            </div>
                                         </div>
                                 </div>
                             </div>   
@@ -68,4 +71,4 @@ function dashboard() {
     )
 }
 
-export default dashboard
+export default dashboardV2

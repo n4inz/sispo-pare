@@ -12,6 +12,9 @@ import {
 import { useState } from "react";
 import {RootContext} from "../../context";
 
+import Link from "next/link";
+import { useRouter } from 'next/router';
+
 function Sidebar({Sidebar}) {
     const [toggle, setToggle] = useState({
     
@@ -51,7 +54,7 @@ function Sidebar({Sidebar}) {
     }
 
    
-
+    const router = useRouter();
     
     return (
         
@@ -87,18 +90,54 @@ function Sidebar({Sidebar}) {
                                                 
                                             </div>
                                             <ul className={`${toggle.dashboard ? "inline" : "hidden"}`}>
-                                                <li className="flex items-center space-x-2 p-1 bg-gray-300 hover:cursor-pointer hover:bg-gray-600 rounded-md">
-                                                    <div className="w-5 h-5 border-2 border-gray-500 rounded-full"/>
-                                                    <span className="text-gray-500">Banner v1</span>
-                                                </li>
-                                                <li className="flex items-center space-x-2 mb-2 mt-2 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
-                                                    <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
-                                                    <span className="text-gray-400">Banner v2</span>
-                                                </li>
-                                                <li className="flex items-center space-x-2 -600 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
-                                                    <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
-                                                    <span className="text-gray-400">Banner v3</span>
-                                                </li>
+                                                <Link href="/admin/dashboard-v1">
+                                                    {
+                                                        router.pathname == "/admin/dashboard-v1" ? (
+                                                            <li className="flex items-center space-x-2 p-1 bg-gray-300 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                                <div className="w-5 h-5 border-2 border-gray-500 rounded-full"/>
+                                                                <span className="text-gray-500">Banner v1</span>
+                                                            </li>
+                                                        ) : (
+                                                            <li className="flex items-center space-x-2 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                                <div className="w-5 h-5 border-2 border-gray-500 rounded-full"/>
+                                                                <span className="text-gray-400">Banner v1</span>
+                                                            </li>
+                                                        )
+                                                    }
+
+                                                </Link>
+                                                <Link href="/admin/dashboard-v2">
+                                                    {
+                                                        router.pathname == "/admin/dashboard-v2" ? (
+                                                            <li className="flex items-center space-x-2 mb-2 mt-2 p-1 bg-gray-300 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                                <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
+                                                                <span className="text-gray-500">Banner v2</span>
+                                                            </li>
+                                                        ) : (
+                                                            <li className="flex items-center space-x-2 mb-2 mt-2 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                                <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
+                                                                <span className="text-gray-400">Banner v2</span>
+                                                            </li>
+                                                        )
+                                                    }
+
+                                                </Link>
+
+                                                <Link href="/admin/dashboard-v3">
+                                                    {
+                                                        router.pathname == "/admin/dashboard-v3" ? (
+                                                            <li className="flex items-center space-x-2 -600 p-1 bg-gray-300 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                                <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
+                                                                <span className="text-gray-500">Banner v3</span>
+                                                            </li>
+                                                        ) : (
+                                                            <li className="flex items-center space-x-2 -600 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                                <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
+                                                                <span className="text-gray-400">Banner v3</span>
+                                                            </li>
+                                                        )
+                                                    }
+                                                </Link>
                                             </ul>
                                         </li>
 

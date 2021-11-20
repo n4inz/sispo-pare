@@ -1,7 +1,10 @@
 import Image from "next/image";
-import Logo from "../../public/Logo/logo.png"
+import Logo from "../../public/Logo/logo.png";
+
 import {MailIcon, LockClosedIcon
 } from "@heroicons/react/solid";
+
+
 function index() {
     return (
         <div className="flex  justify-center p-10  h-screen bg-gradient-to-r from-indigo-500 to-purple-700">
