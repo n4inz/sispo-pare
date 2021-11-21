@@ -5,8 +5,12 @@ import {
     MenuIcon
 } from "@heroicons/react/solid";
 
+
+
 import {RootContext} from "../../context";
+import { useEffect } from "react";
 function Header() {
+
 
     return (
             <RootContext.Consumer>

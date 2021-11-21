@@ -9,7 +9,7 @@ import {
     MenuIcon
 
 } from "@heroicons/react/solid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {RootContext} from "../../context";
 
 import Link from "next/link";
@@ -47,20 +47,49 @@ function Sidebar({Sidebar}) {
             break;
         }
        
-        // console.log(e)
-
-
-       
+      
     }
 
-   
+    
     const router = useRouter();
+
+
+
+    useEffect(()=>{
+        
+        if(router.pathname == "/admin/berita" || router.pathname == "/admin/data-berita") {
+            setToggle({
+                ...toggle,
+                "dashboard" : !toggle.dashboard,
+                "berita" : !toggle.berita
+            })
+        }else if(router.pathname == "/admin/video" || router.pathname == "/admin/data-video"){
+            setToggle({
+                ...toggle,
+                "dashboard" : !toggle.dashboard,
+                "video" : !toggle.video
+            })
+        }else{
+            setToggle({
+                ...toggle,
+                "dashboard" : !toggle.dashboard == false
+                
+            })
+        }
+        
+    }, []);
+    
+    
+
     
     return (
+
+            
         
             // <div className={`${Sidebar ? "block" : "hidden"} hidden lg:block bg-gray-700 h-screen`}>
             <RootContext.Consumer>
                 {
+                    
                     value  => {
                         
                         return (
@@ -78,22 +107,38 @@ function Sidebar({Sidebar}) {
                                 <div className="">
                                     <ul role="menu" className="p-5 ml-3">
                                         <li>
-                                            <div className="flex items-center bg-blue-500 mb-1 hover:cursor-pointer hover:bg-gray-600 rounded-md" onClick={() => dropdown("Dashboard")}>
-                                                <FolderOpenIcon className="w-7 h-7 text-gray-100"/>
-                                                <span className="text-gray-300 p-2 font-light">Dashboard</span>
-                                                {toggle.dashboard ? (
-                                                
-                                                    <ChevronDownIcon className="w-5 h-5 text-gray-400 ml-16" />
+                                            {
+                                                router.pathname ==  "/admin/dashboard-v1" || router.pathname == "/admin/dashboard-v2" || router.pathname == "/admin/dashboard-v3"  ? (
+                                                    <div className="flex items-center  mb-1 bg-blue-500 hover:cursor-pointer hover:bg-gray-600 rounded-md" onClick={() => dropdown("Dashboard")}>
+                                                        <FolderOpenIcon className="w-7 h-7 text-gray-100"/>
+                                                        <span className="text-gray-300 p-2 font-light">Dashboard</span>
+                                                        {toggle.dashboard ? (
+                                                        
+                                                            <ChevronDownIcon className="w-5 h-5 text-gray-400 ml-16" />
+                                                        ) : (
+                                                            <ChevronLeftIcon className="w-5 h-5 text-gray-400 ml-16" />
+                                                        )}
+                                                    
+                                                    </div>
                                                 ) : (
-                                                    <ChevronLeftIcon className="w-5 h-5 text-gray-400 ml-16" />
-                                                )}
-                                                
-                                            </div>
+                                                    <div className="flex items-center  mb-1  hover:cursor-pointer hover:bg-gray-600 rounded-md" onClick={() => dropdown("Dashboard")}>
+                                                        <FolderOpenIcon className="w-7 h-7 text-gray-100"/>
+                                                        <span className="text-gray-300 p-2 font-light">Dashboard</span>
+                                                        {toggle.dashboard ? (
+                                                        
+                                                            <ChevronDownIcon className="w-5 h-5 text-gray-400 ml-16" />
+                                                        ) : (
+                                                            <ChevronLeftIcon className="w-5 h-5 text-gray-400 ml-16" />
+                                                        )}
+                                                    
+                                                    </div>
+                                                )
+                                            }
                                             <ul className={`${toggle.dashboard ? "inline" : "hidden"}`}>
                                                 <Link href="/admin/dashboard-v1">
                                                     {
                                                         router.pathname == "/admin/dashboard-v1" ? (
-                                                            <li className="flex items-center space-x-2 p-1 bg-gray-300 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                            <li className="flex items-center space-x-2 p-1 bg-gray-300 hover:cursor-pointer  rounded-md">
                                                                 <div className="w-5 h-5 border-2 border-gray-500 rounded-full"/>
                                                                 <span className="text-gray-500">Banner v1</span>
                                                             </li>
@@ -109,7 +154,7 @@ function Sidebar({Sidebar}) {
                                                 <Link href="/admin/dashboard-v2">
                                                     {
                                                         router.pathname == "/admin/dashboard-v2" ? (
-                                                            <li className="flex items-center space-x-2 mb-2 mt-2 p-1 bg-gray-300 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                            <li className="flex items-center space-x-2 mb-2 mt-2 p-1 bg-gray-300 hover:cursor-pointer  rounded-md">
                                                                 <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
                                                                 <span className="text-gray-500">Banner v2</span>
                                                             </li>
@@ -126,7 +171,7 @@ function Sidebar({Sidebar}) {
                                                 <Link href="/admin/dashboard-v3">
                                                     {
                                                         router.pathname == "/admin/dashboard-v3" ? (
-                                                            <li className="flex items-center space-x-2 -600 p-1 bg-gray-300 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                            <li className="flex items-center space-x-2 -600 p-1 bg-gray-300 hover:cursor-pointer rounded-md">
                                                                 <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
                                                                 <span className="text-gray-500">Banner v3</span>
                                                             </li>
@@ -142,52 +187,158 @@ function Sidebar({Sidebar}) {
                                         </li>
 
                                         <li>
-                                            <div className="flex items-center mb-1 hover:cursor-pointer hover:bg-gray-600 rounded-md" onClick={() => dropdown("Berita")}>
-                                                <ViewBoardsIcon className="w-5 h-5 text-gray-100"/>
-                                                <span className="text-gray-300 p-2 font-light">Berita</span>
+                                            {
 
-                                                {toggle.berita ? (
+                                                router.pathname == "/admin/berita" || router.pathname == "data-berita" ? (
+                                                    <div className="flex items-center mb-1 bg-blue-500 hover:cursor-pointer hover:bg-gray-600 rounded-md" onClick={() => dropdown("Berita")}>
+                                                        <ViewBoardsIcon className="w-5 h-5 text-gray-100"/>
+                                                        <span className="text-gray-300 p-2 font-light">Berita</span>
+        
+                                                        {toggle.berita ? (
+                                                        
+                                                            <ChevronDownIcon className="w-5 h-5 text-gray-400 ml-28" />
+                                                        ) : (
+                                                            <ChevronLeftIcon className="w-5 h-5 text-gray-400 ml-28" />
+                                                        )}
+                                                    
                                                 
-                                                    <ChevronDownIcon className="w-5 h-5 text-gray-400 ml-28" />
+                                                    </div>
                                                 ) : (
-                                                    <ChevronLeftIcon className="w-5 h-5 text-gray-400 ml-28" />
-                                                )}
+                                                    <div className="flex items-center mb-1 hover:cursor-pointer hover:bg-gray-600 rounded-md" onClick={() => dropdown("Berita")}>
+                                                        <ViewBoardsIcon className="w-5 h-5 text-gray-100"/>
+                                                        <span className="text-gray-300 p-2 font-light">Berita</span>
+        
+                                                        {toggle.berita ? (
+                                                        
+                                                            <ChevronDownIcon className="w-5 h-5 text-gray-400 ml-28" />
+                                                        ) : (
+                                                            <ChevronLeftIcon className="w-5 h-5 text-gray-400 ml-28" />
+                                                        )}
+                                                    
                                                 
-                                            
-                                            </div>
+                                                    </div>
+                                                )
+                                            }
                                             <ul className={`${toggle.berita ? "inline" : "hidden"}`}>
-                                                <li className="flex items-center space-x-2 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
-                                                    <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
-                                                    <span className="text-gray-400">Posting Berita</span>
-                                                </li>
-                                                <li className="flex items-center space-x-2 mb-2 mt-2 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
-                                                    <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
-                                                    <span className="text-gray-400">Data Berita</span>
-                                                </li>
+                                                {
+                                                    router.pathname == "/admin/berita" ? (
+                                                        <Link
+                                                            href="/admin/berita"
+                                                        >
+                                                            <li className="flex items-center space-x-2 p-1 bg-gray-300 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                                <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
+                                                                <span className="text-gray-400">Posting Berita</span>
+                                                            </li>
+                                                        </Link>
+                                                    ) : (
+                                                        <Link
+                                                        href="/admin/berita"
+                                                        >
+                                                            <li className="flex items-center space-x-2 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                                <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
+                                                                <span className="text-gray-400">Posting Berita</span>
+                                                            </li>
+                                                        </Link>
+                                                    )
+                                                }
+                                                {
+                                                    router.pathname == "/admin/data-berita" ? (
+                                                        <Link
+                                                        href="/admin/data-berita"
+                                                        >
+                                                        
+                                                            <li className="flex items-center space-x-2 mb-2 mt-2 p-1 bg-gray-300 hover:cursor-pointer  rounded-md">
+                                                                <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
+                                                                <span className="text-gray-400">Data Berita</span>
+                                                            </li>
+                                                        </Link>
+                                                    ) : (
+                                                        <Link
+                                                        href="/admin/data-berita"
+                                                        >
+                                                        
+                                                            <li className="flex items-center space-x-2 mb-2 mt-2 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                                <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
+                                                                <span className="text-gray-400">Data Berita</span>
+                                                            </li>
+                                                        </Link>
+                                                    )
+                                                }
                                             </ul>
                                         </li>
 
                                         <li>
-                                            <div className="flex items-center mb-1 rounded-md hover:cursor-pointer hover:bg-gray-600 " onClick={() => dropdown("Video")}>
-                                                <ViewBoardsIcon className="w-5 h-5 text-gray-100"/>
-                                                <span className="text-gray-300 p-2 font-light">Video</span>
-                                                {toggle.video ? (
-                                                
-                                                    <ChevronDownIcon className="w-5 h-5 text-gray-400 ml-[115px]" />
+                                            {
+                                                router.pathname == "/admin/video" || router.pathname == "/admin/data-video" ? (
+                                                    <div className="flex items-center mb-1 rounded-md bg-blue-500 hover:cursor-pointer hover:bg-gray-600 " onClick={() => dropdown("Video")}>
+                                                        <ViewBoardsIcon className="w-5 h-5 text-gray-100"/>
+                                                        <span className="text-gray-300 p-2 font-light">Video</span>
+                                                        {toggle.video ? (
+                                                        
+                                                            <ChevronDownIcon className="w-5 h-5 text-gray-400 ml-[115px]" />
+                                                        ) : (
+                                                            <ChevronLeftIcon className="w-5 h-5 text-gray-400 ml-[115px]" />
+                                                        )}
+                                                        
+                                                    </div>
                                                 ) : (
-                                                    <ChevronLeftIcon className="w-5 h-5 text-gray-400 ml-[115px]" />
-                                                )}
-                                                
-                                            </div>
+                                                    <div className="flex items-center mb-1 rounded-md hover:cursor-pointer hover:bg-gray-600 " onClick={() => dropdown("Video")}>
+                                                        <ViewBoardsIcon className="w-5 h-5 text-gray-100"/>
+                                                        <span className="text-gray-300 p-2 font-light">Video</span>
+                                                        {toggle.video ? (
+                                                        
+                                                            <ChevronDownIcon className="w-5 h-5 text-gray-400 ml-[115px]" />
+                                                        ) : (
+                                                            <ChevronLeftIcon className="w-5 h-5 text-gray-400 ml-[115px]" />
+                                                        )}
+                                                        
+                                                    </div>
+                                                )
+                                            }
                                             <ul className={`${toggle.video ? "inline" : "hidden"}`}>
-                                                <li className="flex items-center space-x-2 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
-                                                    <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
-                                                    <span className="text-gray-400">Posting Video</span>
-                                                </li>
-                                                <li className="flex items-center space-x-2 mb-2 mt-2 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
-                                                    <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
-                                                    <span className="text-gray-400">Data Video</span>
-                                                </li>
+                                            {
+                                                router.pathname == "/admin/video" ? (
+                                                    <Link
+                                                        href="/admin/video"
+                                                    >
+                                                        <li className="flex items-center space-x-2 p-1 bg-gray-300 hover:cursor-pointer rounded-md">
+                                                            <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
+                                                            <span className="text-gray-400">Posting Video</span>
+                                                        </li>
+                                                    </Link>
+                                                ) : (
+                                                    <Link
+                                                        href="/admin/video"
+                                                    >
+                                                        <li className="flex items-center space-x-2 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                            <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
+                                                            <span className="text-gray-400">Posting Video</span>
+                                                        </li>
+                                                    </Link>
+                            
+                                                )
+                                            }
+                                            {
+                                                router.pathname == "/admin/data-video" ? (
+                                                    <Link
+                                                        href="/admin/data-video"
+                                                    >
+                                                        <li className="flex items-center space-x-2 mb-2 mt-2 p-1 bg-gray-300 hover:cursor-pointer  rounded-md">
+                                                            <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
+                                                            <span className="text-gray-400">Data Video</span>
+                                                        </li>
+                                                    </Link>
+                                                ) : (
+                                                    <Link 
+                                                        href="/admin/data-video"
+                                                    >
+                                                        <li className="flex items-center space-x-2 mb-2 mt-2 p-1 hover:cursor-pointer hover:bg-gray-600 rounded-md">
+                                                            <div className="w-5 h-5 border-2 border-gray-400 rounded-full"/>
+                                                            <span className="text-gray-400">Data Video</span>
+                                                        </li>
+                                                    </Link>
+                                                )
+                                            }
                                             </ul>
                                         </li>
                                     </ul>
